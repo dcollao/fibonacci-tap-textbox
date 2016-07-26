@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     var n: Int = 0
-    var c: Int = 0    
+    var c: Int = 0
+    var p = true
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textbox: UITextField!
@@ -25,13 +26,32 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func OnButtonPressed(_ sender: UIButton) {
+    func isPrime(number: Int) -> (Bool){
+        let q = number
+        
+        if q == 1{
+            return false
+        }
+        
+        if q != 2 && q != 1{
+            for i in 2 ..< q {
+                if q % i == 0 {
+                return false
+                }
+            }
+        }
+        return true
+    }
+    
+    
+        @IBAction func OnButtonPressed(_ sender: UIButton) {
         if ((textbox.text?.isEmpty) != false) {
             label.text = "nope"
         } else {
             n = Int(textbox.text!)!
             c = fibonacci(number: n)
-            label.text = "\(n) --> \(c)"
+            p = isPrime(number: n)
+            label.text = "\(n) -fibonacci-> \(c) and is prime? -> \(p)"
         }
     }
 
